@@ -1,8 +1,8 @@
 @use 'variaveis';
 
 body {
+  background-color: variaveis.$background-color;
   font-family: variaveis.$font-family;
   font-size: variaveis.$font-size;
   color: variaveis.$text-color;
-  background-color: variaveis.$background-color;
 }

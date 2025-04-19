@@ -1,0 +1,25 @@
+{
+  "name": "gulp-task",
+  "version": "1.0.0",
+  "description": "Mas antes precisamos instalar o ```gulp globalmente```\r ```\r npm install --global gulp-cli\r ```\r Após isso iniciamos nosso projeto com o ```node```\r ```\r npm init\r ```\r E vai Dando ```enter``` em todas as perguntas que aparecem.  \r Após isso, instalamos o ```gulp localmente```\r ```\r npm install --save-dev gulp\r ```\r Após isso, vamos até o arquivo ```package.json``` e acrescentamos o ```gulp no script```\r ```\r   \"scripts\": {\r     \"gulp\": \"gulp\",\r     \"test\": \"echo \\\"Error: no test specified\\\" && exit 1\"\r   },\r ```",
+  "main": "index.js",
+  "scripts": {
+    "gulp": "gulp",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LorranFranklin/EBAC-MOD-16-TASK.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LorranFranklin/EBAC-MOD-16-TASK/issues"
+  },
+  "homepage": "https://github.com/LorranFranklin/EBAC-MOD-16-TASK#readme",
+  "devDependencies": {
+    "gulp": "^5.0.0",
+    "gulp-sass": "^6.0.1",
+    "sass": "^1.86.3"
+  }
+}

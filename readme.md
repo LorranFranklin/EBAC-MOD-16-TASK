@@ -154,3 +154,128 @@ Agora iremos ao terminal da inicio no watch
 ```
 npm run gulp watch
 ```
+## Instalação do ```gulp-uglify``` pacote para minificar o ```js```
+```
+npm install --save-dev gulp-uglify
+```
+
+Após instalado vamos importar no arquivo ```gulpfile```
+```
+const sass = require('gulp-sass')(require('sass')); // Importing gulp-sass
+const gulp = require('gulp');  // Importing gulp
+const sourceMaps = require('gulp-sourcemaps'); // Importando gulp-sourcemaps
+const uglify = require('gulp-uglify'); // Importando gulp-uglify
+```
+
+vamos criar a ```function comprimeJavaScript()```
+```
+function comprimeJavaScript() {
+  return gulp
+    .src('./source/scripts/*.js') // Pega todos os arquivos .js dentro da pasta scripts
+    .pipe(uglify()) // Minifica os arquivos JavaScript
+    // .pipe(obfuscate()) // Ofusca os arquivos JavaScript
+    .pipe(gulp.dest('./build/scripts')); // Salva os arquivos compilados na pasta js
+}
+```
+
+Após isso fazemos a exportação
+```
+exports.comprimeJavaScript = comprimeJavaScript;
+```
+Após isso vamos criar 2 arquivos ```.js``` ```aritimetica.js``` e ```sum.js``` onde esses estarão dentro de ```scripts``` que está dentro de ```source```
+
+Agora executamos no terminal 
+```
+npm run gulp comprimeJavaScript
+```
+
+Isso vai comprimir os arquivos, tirando espaços e colocando em poucas linhas todo o código.  O resultado ficará em ```scripts``` dentro de ```build```
+
+## Vamos instalar outro plugin
+```
+npm install --save-dev gulp-obfuscate
+```
+Proximo passo é fazer a importação
+```
+const obfuscate = require('gulp-obfuscate'); // Importando gulp-obfuscate
+```
+
+agora adicionamos na function:
+```
+function comprimeJavaScript() {
+  return gulp
+    .src('./source/scripts/*.js') // Pega todos os arquivos .js dentro da pasta scripts
+    .pipe(uglify()) // Minifica os arquivos JavaScript
+    .pipe(obfuscate()) // Ofusca os arquivos JavaScript
+    .pipe(gulp.dest('./build/scripts')); // Salva os arquivos compilados na pasta js
+}
+```
+Após isso rodamos o comando no terminal
+```
+npm run gulp comprimeJavaScript
+```
+O plugin gulp-obfuscate é usado para ofuscar o código JavaScript. A ofuscação transforma o código em uma forma menos legível, dificultando a compreensão por humanos, mas mantendo sua funcionalidade. Isso é útil para proteger o código contra engenharia reversa ou cópia não autorizada.
+
+## Instalando puglin de minificar imagem
+```
+npm install --save-dev gulp-imagemin
+```
+Importando o puglin
+```
+const imagemin = require('gulp-imagemin'); // Importando gulp-imagemin
+```
+
+Após isso criamos a function 
+```
+function comprimeImagens() {
+  return gulp
+    .src('./source/images/*') // Pega todos os arquivos dentro da pasta images
+    .pipe(imagemin()) // Minifica as imagens
+    .pipe(gulp.dest('./build/images')); // Salva os arquivos compilados na pasta images
+}
+```
+Próximo passo é exportar o puglin
+```
+exports.images = comprimeImagens;
+```
+Após isso, iremos criar a pasta ```images``` dentro de ```source``` e adicionar imagens na pasta. iremos criar a pasta ```images``` em ```build```
+
+Agora vamos executar no terminal
+```
+npm run gulp images
+```
+Aqui temos um erro como retorno, devido a importação. o Professor nos passa uma versão anterior para ser instalada.
+```
+npm install --save-dev gulp-imagemin@7.1.0
+```
+
+Após isso vamos executar no terminal
+```
+npm run gulp images
+```
+
+Agora vamos mudar a function watch ela ficara assim:
+```
+exports.default = function () {
+  gulp.watch(
+    './source/styles/*.scss',
+    { ignoreInitial: false },
+    gulp.series(compilaSass)
+  );
+  gulp.watch(
+    './source/scripts/*.js',
+    { ignoreInitial: false },
+    gulp.series(comprimeJavaScript)
+  );
+  gulp.watch(
+    './source/images/*',
+    { ignoreInitial: false },
+    gulp.series(comprimeImagens)
+  );
+};
+```
+
+Após isso vamos no terminal 
+```
+npm run gulp
+```

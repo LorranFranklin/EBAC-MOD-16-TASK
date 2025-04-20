@@ -279,3 +279,16 @@ Após isso vamos no terminal
 ```
 npm run gulp
 ```
+
+Para outro programador usar o projeto, basta copiar o repositorio 
+
+Ir ao terminal e dar um 
+```
+npm install
+```
+Isso irá instalar todas as dependecias que estão no ```package.json```
+
+Após isso basta dar um 
+```
+npm run gulp
+```
